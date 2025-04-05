@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 using MyProject.API.Data;
-using MyProject.API.Repository.IRepository;
-using MyProject.API.UOW.IUOW;
+using MyProject.API.UnitOfWork.IUOW;
 
 namespace MyProject.API.UOW
 {
@@ -10,21 +8,11 @@ namespace MyProject.API.UOW
     {
         private ApplicationDbContext _db;
         private IDbContextTransaction _transaction;
-        public IM01CRepository M01C { get; }
-        public IK02TRepository K02T { get;  }
-        public IK11TRepository K11T { get; }
-        public IB03TRepository B03T { get; }
-
-        public UnitOfWork(ApplicationDbContext db, IM01CRepository m01CRepository, 
-            IK02TRepository k02TRepository, IK11TRepository k11TRepository, IB03TRepository b03TRepository)
+        public UnitOfWork (ApplicationDbContext db, IDbContextTransaction transaction)
         {
             _db = db;
-            M01C = m01CRepository;
-            K02T = k02TRepository;
-            K11T = k11TRepository;
-            B03T = b03TRepository;
+            _transaction = transaction;
         }
-
         public void Dispose()
         {
             _db.Dispose();
@@ -47,7 +35,7 @@ namespace MyProject.API.UOW
                 await SaveAsync();
                 await _transaction.CommitAsync();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 await RollbackAsync();
                 throw ex;

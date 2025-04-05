@@ -19,7 +19,7 @@ namespace MyProject.API.Config
             services.AddScoped<IB03TRepository, B03TRepository>();
             services.AddScoped<ITokenRepository, TokenRepository>();
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IProductUnitOfWork, ProductUnitOfWork>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(MappingConfig));

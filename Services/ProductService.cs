@@ -20,11 +20,11 @@ namespace MyProject.API.Services
     public class ProductService : IProductService
     {
 
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly string _includeTables = "B03T,K11T,K02T";
         
-        public ProductService(IMapper mapper, IUnitOfWork unitOfWork)
+        public ProductService(IMapper mapper, IProductUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
