@@ -15,13 +15,11 @@ namespace MyProject.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        private readonly IMapper _mapper;
         private APIResponse _response;
-        public ProductController(IProductService productService, IMapper mapper)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
             _response = new APIResponse();
-            _mapper = mapper;
         }
 
 
@@ -47,13 +45,7 @@ namespace MyProject.API.Controllers
         public async Task<IActionResult> GetAllCategories()
         {
             var responseService = await _productService.GetAllCategories();
-            if (!responseService.Iscucess)
-            {
-                _response.IsSuccess = false;
-                _response.StatusCode = HttpStatusCode.NotFound;
-                _response.ErrorMessages.Add(responseService.Message);
-                return NotFound();
-            }
+
             _response.StatusCode = HttpStatusCode.OK;
             _response.Result = responseService.Result;
             return Ok(_response);
@@ -63,9 +55,9 @@ namespace MyProject.API.Controllers
         [HttpGet("GetList")]
         public async Task<IActionResult> GetListProduct([FromQuery]string? search)
         {
-            var responce = await _productService.GetInfoProducts(keyword: search);
+            var responseService = await _productService.GetInfoProducts(keyword: search);
             _response.StatusCode = HttpStatusCode.OK;
-            _response.Result = responce.Result;
+            _response.Result = responseService.Result;
             return Ok(_response);
         }
 
@@ -74,6 +66,10 @@ namespace MyProject.API.Controllers
         public async Task<IActionResult> GetProductToUpdate(Guid id)
         {
             var responseService = await _productService.GetProductToUpdate(id);
+            if (!responseService.Iscucess)
+            {
+                return NotFound();
+            }
             _response.StatusCode = HttpStatusCode.OK;
             _response.Result = responseService.Result;
             return Ok(_response);
@@ -89,7 +85,7 @@ namespace MyProject.API.Controllers
                 _response.IsSuccess = false;
                 _response.StatusCode = HttpStatusCode.BadRequest;
                 _response.ErrorMessages.Add(responseService.Message);
-                return NotFound();
+                return BadRequest(_response);
             }
 
             _response.StatusCode = HttpStatusCode.OK;

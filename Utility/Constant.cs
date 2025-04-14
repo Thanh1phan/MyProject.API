@@ -10,5 +10,14 @@ namespace MyProject.API.Commom
 
         public static readonly string FolderImage = @"wwwroot\Images\";
         public static readonly string BaseUrl = @"https://localhost:44309/Images/";
+
+        public enum Status
+        {
+            Pending,
+            Confirmed,
+            Processing,
+            Delivered,
+            Cancelled
+        }
     }
 }

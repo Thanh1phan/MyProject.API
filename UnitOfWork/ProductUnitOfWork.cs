@@ -14,8 +14,8 @@ namespace MyProject.API.UOW
         public IK11TRepository K11T { get; }
         public IB03TRepository B03T { get; }
 
-        public ProductUnitOfWork(ApplicationDbContext db, IDbContextTransaction transaction, IM01CRepository m01CRepository,
-            IK02TRepository k02TRepository, IK11TRepository k11TRepository, IB03TRepository b03TRepository) : base(db, transaction)
+        public ProductUnitOfWork(ApplicationDbContext db, IM01CRepository m01CRepository,
+            IK02TRepository k02TRepository, IK11TRepository k11TRepository, IB03TRepository b03TRepository) : base(db)
         {
             M01C = m01CRepository;
             K02T = k02TRepository;

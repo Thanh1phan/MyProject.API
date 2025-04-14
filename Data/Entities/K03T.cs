@@ -1,6 +1,6 @@
 ﻿namespace MyProject.API.Data.Entities
 {
-    public class K03T
+    public class K03T : BaseEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

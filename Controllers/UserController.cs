@@ -98,17 +98,17 @@ namespace MyProject.API.Controllers
         [HttpPost("Revoke")]
         public async Task<IActionResult> RevokeRefreshToken([FromBody] TokenDto tokenDto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _userService.RevokeRefreshToken(tokenDto);
-                _response.IsSuccess = true;
-                _response.StatusCode = HttpStatusCode.OK;
-                return Ok(_response);
-
+                _response.IsSuccess = false;
+                _response.Result = "Invalid Input";
+                return BadRequest(_response);
             }
-            _response.IsSuccess = false;
-            _response.Result = "Invalid Input";
-            return BadRequest(_response);
+            
+            await _userService.RevokeRefreshToken(tokenDto);
+            _response.IsSuccess = true;
+            _response.StatusCode = HttpStatusCode.OK;
+            return Ok(_response);
         }
     }
 }

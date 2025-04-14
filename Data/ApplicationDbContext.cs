@@ -18,6 +18,10 @@ namespace MyProject.API.Data
         public DbSet<K11T> K11T { get; set; }
         public DbSet<K02T> K02T { get; set; }
         public DbSet<M02T> M02T { get; set; }
+
+        public DbSet<K03T> K03T { get; set; }
+        public DbSet<D03T> D03T { get; set; }
+        public DbSet<D03TH> D03TH { get; set; }
         public DbSet<RefreshToken> RefreshToken { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +32,8 @@ namespace MyProject.API.Data
             modelBuilder.ApplyConfiguration(new K02TConfig());
             modelBuilder.ApplyConfiguration(new K11TConfig());
             modelBuilder.ApplyConfiguration(new B03TConfig());
+
+            modelBuilder.ApplyConfiguration(new D03THConfig());
         }
     }
 }

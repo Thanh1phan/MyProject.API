@@ -1,6 +1,6 @@
 ﻿namespace MyProject.API.Data.Entities
 {
-    public class D03TH
+    public class D03TH : BaseEntity
     {
         public Guid D03TId { get; set; }
         public Guid M01CId { get; set; }

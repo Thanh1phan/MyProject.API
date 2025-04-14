@@ -8,10 +8,9 @@ namespace MyProject.API.UOW
     {
         private ApplicationDbContext _db;
         private IDbContextTransaction _transaction;
-        public UnitOfWork (ApplicationDbContext db, IDbContextTransaction transaction)
+        public UnitOfWork (ApplicationDbContext db)
         {
             _db = db;
-            _transaction = transaction;
         }
         public void Dispose()
         {

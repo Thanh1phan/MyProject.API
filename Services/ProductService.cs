@@ -134,13 +134,6 @@ namespace MyProject.API.Services
         {
             var response = new ServiceResponseDto<IEnumerable<CategoryDto>>();
             var result = await _unitOfWork.B03T.GetListAsync();
-            if (result == null)
-            {
-                response.Iscucess = false;
-                response.Message = CConstant.NotFound;
-                return response;
-            }
-
             var listData = result.Select(x => new CategoryDto { Id = x.Id, Name = x.Name});
             response.Result = listData;
             return response;
@@ -257,7 +250,7 @@ namespace MyProject.API.Services
             var response = new ServiceResponseDto<ProductUpdateDto>();
             var urls = new List<string>();
 
-            M01C m01C = new M01C()
+            var m01C = new M01C()
             {
                 Id = model.Id,
                 Name = model.Name,
