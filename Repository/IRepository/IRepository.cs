@@ -9,7 +9,7 @@ namespace MyProject.API.Repository.IRepository
         Task<IEnumerable<T>> GetListAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string? includeProperties = null, int pageSize = 0, int pageNumber = 1);
         Task SaveAsync();
-        Task RemoveAsync(T entity);
-        Task UpdateAsync(T entity);
+        void Remove(T entity);
+        void Update(T entity);
     }
 }

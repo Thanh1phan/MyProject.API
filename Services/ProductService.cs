@@ -112,8 +112,8 @@ namespace MyProject.API.Services
                 { 
                     var k11t = await _unitOfWork.K11T.GetAsync(x => x.M01CId == id);
                     response.Result = _mapper.Map<ProductDto>(product);
-                    await _unitOfWork.M01C.RemoveAsync(product);
-                    await _unitOfWork.K11T.RemoveAsync(k11t);
+                    _unitOfWork.M01C.Remove(product);
+                    _unitOfWork.K11T.Remove(k11t);
                     await _unitOfWork.K02T.RemoveRangeAsync(x => x.M01CId == id);
                     await _unitOfWork.CommitAsync();
                 }
@@ -288,7 +288,7 @@ namespace MyProject.API.Services
                                 model.ReplaceImageIndexes.RemoveAt(j);
                             }   
                         }
-                        await _unitOfWork.K02T.RemoveAsync(itemRemove);
+                        _unitOfWork.K02T.Remove(itemRemove);
                     }  
                 }
 

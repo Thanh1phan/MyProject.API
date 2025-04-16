@@ -190,7 +190,7 @@ namespace MyProject.API.UnitOfWork
         private async Task MarkTokenAsInvalid(RefreshToken refreshToken)
         {
             refreshToken.IsValid = false;
-            await _tokenRepository.UpdateAsync(refreshToken);
+            _tokenRepository.Remove(refreshToken);
             await _tokenRepository.SaveAsync();
         }
 

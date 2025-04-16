@@ -10,7 +10,7 @@
     public class GlobalHandleExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-
+        
         public GlobalHandleExceptionMiddleware(RequestDelegate next)
         {
             _next = next;

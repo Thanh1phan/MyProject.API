@@ -88,11 +88,11 @@ namespace MyProject.API.Repository
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return await orderBy(query).ToListAsync();
             }
             else
             {
-                return query.ToList();
+                return await query.ToListAsync();
             }
         }
 
@@ -101,7 +101,7 @@ namespace MyProject.API.Repository
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public virtual async Task RemoveAsync(T entity)
+        public virtual void Remove(T entity)
         {
             _dbSet.Remove(entity);
         }
@@ -111,7 +111,7 @@ namespace MyProject.API.Repository
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public virtual async Task UpdateAsync(T entity)
+        public virtual void Update(T entity)
         {
             _dbSet.Update(entity);
         }
