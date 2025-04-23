@@ -9,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace MyProject.API.UnitOfWork
+namespace MyProject.API.Services
 {
     public class UserService : IUserService
     {

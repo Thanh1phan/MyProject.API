@@ -2,7 +2,6 @@
 using MyProject.API.Repository.IRepository;
 using MyProject.API.Services;
 using MyProject.API.Services.IService;
-using MyProject.API.UnitOfWork;
 using MyProject.API.UnitOfWork.IUOW;
 using MyProject.API.UOW;
 using MyProject.API.UOW.IUOW;
